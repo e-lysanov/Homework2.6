@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         task1();
         task2();
         task3();
+        task4();
     }
         public static void task1(){
             //task1
@@ -24,29 +22,29 @@ public class Main {
         public static void task2() {
             //task2
             List<Integer> nums = new ArrayList<>(List.of(1, 1, 2, 3, 4, 8, 4, 5, 5, 6, 7));
-            List<Integer> nums2 = new ArrayList<>();
+            List<Integer> evenNums = new ArrayList<>();
             for (Integer num : nums) {
                 if (num % 2 == 0) {
-                    nums2.add(num);
+                    evenNums.add(num);
                 }
             }
 
-            List<Integer> nums3 = new ArrayList<>();
-            int a = nums2.get(0);
-            for (int i = 0; i < nums2.size(); i++) {
-                if (a <= nums2.get(i)) {
-                    a = nums2.get(i);
+            List<Integer> evenNumsSorted = new ArrayList<>();
+            int a = evenNums.get(0);
+            for (int i = 0; i < evenNums.size(); i++) {
+                if (a <= evenNums.get(i)) {
+                    a = evenNums.get(i);
                 }
             }
 
             for (int i = 0; i < (a + 1); i++) {
-                if (nums2.contains(i)) {
-                    nums3.add(i);
+                if (evenNums.contains(i)) {
+                    evenNumsSorted.add(i);
                     i++;
                 }
             }
 
-            System.out.println(nums3);
+            System.out.println(evenNumsSorted);
             System.out.println("--------------");
 
         }
@@ -57,14 +55,30 @@ public class Main {
                     "egor",
                     "yulya"));
 
-            List<String> words2 = new ArrayList<>();
+            Set<String> wordsSorted = new HashSet<>();
+
             for (String word : words) {
-                if (words.contains(word) && !words2.contains(word)) {
-                    words2.add(word);
+                if (words.contains(word) ) {
+                    wordsSorted.add(word);
                 }
             }
-            System.out.println(words2);
+            System.out.println(wordsSorted);
             System.out.println("--------------");
+        }
+
+        public static void task4() {
+            //task4
+            List<String> strings = new ArrayList<>(List.of("один", "один", "два","два", "два", "три", "три", "три"));
+            Map<String, Integer> duplicates = new HashMap<>();
+            for (String string : strings) {
+                if (duplicates.containsKey(string)) {
+                    duplicates.put(string, duplicates.get(string) + 1);
+                } else {
+                    duplicates.put(string, 1);
+                }
+            }
+            System.out.println(duplicates);
+
         }
 
     }
